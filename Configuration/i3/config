@@ -15,9 +15,6 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:FontAwesome 10
 
-
-
-
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -231,4 +228,4 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20
 bindsym Print exec gnome-screenshot
 
 #Menu - Rofi
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 340 -opacity "90" -bw 0 -bc "$bg-color-menu" -bg "$bg-color-menu" -fg "$text-color" -hlbg "$text-color-bar" -hlfg "$text-color"
+bindsym $mod+d exec rofi -show run
