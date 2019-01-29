@@ -7,13 +7,13 @@
 
 # i3 config file (v4)
 #
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:FontAwesome 10
+font pango:FontAwsome 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -36,7 +36,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -92,73 +92,64 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-#variables for workspace's
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
-set $workspace1 "1 Programming "
-set $workspace2 "2 Browser  "
-set $workspace3 "3 Work  &#xf0f6;"
-set $workspace4 "4 Edition  &#xf03e;"
-set $workspace10 "10 Relax   "
+# variables of the colors
+set $bg-color 	         #191a21
+set $bg-color-bar        #191a21
+set $bg-color-menu       #0b0b0d
+set $inactive-bg-color   #191a21
+set $text-color          #5f6ea0
+set $text-color-bar      #5f6ea0
+set $inactive-text-color #5f6ea0
+set $urgent-bg-color     #E53935
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
-#bindsym $mod+6 workspace 6
-#bindsym $mod+7 workspace 7
-#bindsym $mod+8 workspace 8
-#bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace $workspace10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace $workspace4
-bindsym $mod+Shift+5 move container to workspace $workspace5
-#bindsym $mod+Shift+6 move container to workspace 6
-#bindsym $mod+Shift+7 move container to workspace 7
-#bindsym $mod+Shift+8 move container to workspace 8
-#bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace $workspace10
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
-#set workspace's
-assign [class="Atom"] $workspace1
-assign [class="Firefox"] $workspace2
-
-assign [class="vlc"] $workspace10
-assign [class="Totem"] $workspace10
-for_window [class="Spotify"] move to workspace $workspace10
-for_window [class="Chromium-browser"] move to workspace $workspace10
-
-
+# start with system 
+exec_always feh --bg-scale Pictures/photo-3.jpg 
+exec_always ~/.screenlayout/only_monitor.sh
+#exec_always compton -f 
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
-
-#stat with system
-exec_always compton -f
-exec_always feh --bg-scale Imagens/Wallpapers/wallpaper.jpg
-
-#variables of the colors
-
-set $bg-color 	         #444444
-set $bg-color-bar        #212020
-set $bg-color-menu       #0b0b0d
-set $inactive-bg-color   #444444
-set $text-color          #f3f4f5
-set $text-color-bar      #00a215
-set $inactive-text-color #888d95
-set $urgent-bg-color     #E53935
-
-
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # window colors
 #                       border              background         text                 indicator
@@ -167,7 +158,8 @@ client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
-#hidden border
+
+# hidden border 
 hide_edge_borders both
 
 # resize window (you can also use the mouse for that)
@@ -189,9 +181,10 @@ mode "resize" {
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
+        # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -199,8 +192,10 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status -c ~/.config/i3/i3status.conf
-        colors {
+        #position top
+		status_command i3status -c ~/.config/i3/i3status2.conf
+        		
+		colors {
     		background $bg-color-bar
     	  separator #757575
     		#                  border             background         text
@@ -215,18 +210,26 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
-#Control multimidia
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPause exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-
 #Control brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20
 
-#Control print
-bindsym Print exec gnome-screenshot
+#Control multimidia
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous 
 
-#Menu - Rofi
-#bindsym $mod+d exec rofi -show run
+gaps inner 8
+
+#smart_gaps on 
+new_window none 
+
+# print print screen 
+bindsym ctrl+Mod1+a exec deepin-screenshot
+
+# rofi 
+bindsym $mod+d exec rofi -show run
+
+# polybar 
+#exec_always --no-startup-id ~/.config/polybar/i3wmthemer_bar_launch.sh
